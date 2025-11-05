@@ -2,18 +2,28 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Flutter: Debug arquivo atual (main em qualquer arquivo)",
+      "name": "Flutter: Debug app (lib/main.dart)",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder}/lib/main.dart",
+      "cwd": "${workspaceFolder}",
+      "toolArgs": ["--dart-define=API_BIBLE_KEY=${input:apiBibleKey}"]
+    },
+    {
+      "name": "Flutter: Debug arquivo atual (somente .dart com main())",
       "request": "launch",
       "type": "dart",
       "program": "${file}",
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "toolArgs": ["--dart-define=API_BIBLE_KEY=${input:apiBibleKey}"]
     },
     {
       "name": "Flutter: Escolher arquivo em lib/",
       "request": "launch",
       "type": "dart",
       "program": "${workspaceFolder}/lib/${input:entryFile}",
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "toolArgs": ["--dart-define=API_BIBLE_KEY=${input:apiBibleKey}"]
     }
   ],
   "inputs": [
@@ -22,6 +32,12 @@
       "type": "promptString",
       "description": "Informe caminho relativo dentro de lib/ (ex: feature_x/main.dart)",
       "default": "main.dart"
+    },
+    {
+      "id": "apiBibleKey",
+      "type": "promptString",
+      "description": "API Bible Key (ou deixe vazio para não definir)",
+      "default": ""
     }
   ]
 }
