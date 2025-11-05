@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter: Debug arquivo atual (main em qualquer arquivo)",
+      "request": "launch",
+      "type": "dart",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Flutter: Escolher arquivo em lib/",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder}/lib/${input:entryFile}",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "entryFile",
+      "type": "promptString",
+      "description": "Informe caminho relativo dentro de lib/ (ex: feature_x/main.dart)",
+      "default": "main.dart"
+    }
+  ]
+}
