@@ -23,12 +23,30 @@ Implementação: `lib/data/app_database.dart`
 - Endpoint: `https://rest.api.bible`
 - Defina a chave via `--dart-define`.
 
-Exemplo de execução:
+Execução básica:
 
 ```
 flutter run \
   --dart-define=API_BIBLE_KEY=mBRApjy5NtitrUSQxItkr
 ```
+
+### Debug e flags úteis
+
+- Teste rápido de ingestão (apenas 1 livro):
+
+```
+flutter run \
+  --dart-define=API_BIBLE_KEY=SEU_TOKEN \
+  --dart-define=SUBSET_ONE_BOOK=true
+```
+
+- Logs: o serviço de sincronização imprime progresso no console e persiste estatísticas em `SharedPreferences`:
+  - `sync.last.bibleId`, `sync.last.total`, `sync.last.completed`, `sync.last.ms`, `sync.last.timestamp`.
+
+### Tratamento de rede
+
+- Android: `android.permission.INTERNET` incluída no `AndroidManifest.xml`.
+- Ausência de rede: a tela “Gerenciar Traduções” exibe uma mensagem amigável e um botão “Tentar novamente”. O serviço de sincronização realiza reintentos básicos em chamadas de rede.
 
 ## Gerar arquivos de código
 
@@ -47,3 +65,4 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - Criar serviços para download e persistência das traduções e livros
 - Implementar stores MobX por feature (leitura, busca, anotações)
 - Desenho livre e destaques com suporte a stylus
+ - Navegação rápida por capítulo (anterior/próximo) e título com nome do livro
